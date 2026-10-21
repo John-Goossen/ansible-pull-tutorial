@@ -43,7 +43,7 @@
    - name: Create the Student user
      ansible.builtin.user:
        name: "Student"
-       groups: "Student"
+       groups: "users"
        append: true
        password: "$6$rounds=656000$zdHfq4XQw20W/cDS$OmrGXzsHaCOA.jPlMo2uOrr/VVDzwHFh2I7vrHYYduxvkOq9O0buQ6hJJzNh/YZUrKem3rArYaFZWBrJvf1PA/"
        shell: /bin/bash
