@@ -27,7 +27,7 @@
        name: "{{ admin_user }}"
        groups: "{{ admin_group }}"
        append: true
-       password: "656000$8eV3Ld1UUmC1WprX$xcRhfWzeiOS3SacLQa.VlFeJQ34qM3U71H0.CTQ5C3BsCQgJTE75NQdwvojrjGT38eZeIJeSa88JUwcSJtPdX/"
+       password: "$6$rounds=656000$V/9kXBW2XiEQ0e4y$6NTdxhzcBGav7HcHAxlI2bpWPC6fcdf4MSw4a0sthA5rw7XgqebGZ/f/i8bWrITnWJELgk9XEyzz3w9Nuo5Ww/"
        shell: /bin/bash
        create_home: true
 
