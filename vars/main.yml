@@ -13,6 +13,6 @@ packages:
   - tmux
   - vim
   - wget
-  - openssh-server
+  - ssh
 
 system_timezone: America/Chicago
