@@ -2,7 +2,7 @@
 
 - name: Basic system setup
   hosts: localhost
-  connection: local, all
+  connection: local, "{{ ansible_hostname }}"
   become: true
 
   vars_files:
