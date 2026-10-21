@@ -2,7 +2,7 @@
 
 - name: Basic system setup
   hosts: localhost
-  connection: local
+  connection: local, all
   become: true
 
   vars_files:
@@ -87,7 +87,7 @@
 
     # --- COMMON SETUP ---
 
-    - name: Ensure dependencies for repository management are present
+   - name: Ensure dependencies for repository management are present
       ansible.builtin.apt:
         name:
           - apt-transport-https
@@ -96,7 +96,7 @@
         state: present
         update_cache: yes
 
-    - name: Create directory for custom repository keys
+   - name: Create directory for custom repository keys
       ansible.builtin.file:
         path: /etc/apt/keyrings
         state: directory
@@ -105,13 +105,13 @@
 
     # --- GOOGLE CHROME INSTALLATION ---
 
-    - name: Download Google's official GPG signing key
+   - name: Download Google's official GPG signing key
       ansible.builtin.get_url:
         url: https://google.com
         dest: /etc/apt/keyrings/google-chrome.asc
         mode: '0644'
 
-    - name: Add Google Chrome repository source configuration
+   - name: Add Google Chrome repository source configuration
       ansible.builtin.apt_repository:
         repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.asc] http://google.com stable main"
         filename: google-chrome
@@ -120,13 +120,13 @@
 
     # --- VISUAL STUDIO CODE INSTALLATION ---
 
-    - name: Download Microsoft's official GPG signing key
+   - name: Download Microsoft's official GPG signing key
       ansible.builtin.get_url:
         url: https://packages.microsoft.com/keys/microsoft.asc
         dest: /etc/apt/keyrings/microsoft.asc
         mode: '0644'
 
-    - name: Add Visual Studio Code repository source configuration
+   - name: Add Visual Studio Code repository source configuration
       ansible.builtin.apt_repository:
         repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.asc] https://packages.microsoft.com/repos/vscode stable main"
         filename: vscode
@@ -135,7 +135,7 @@
 
     # --- FINAL PACKAGE DEPLOYMENT ---
 
-    - name: Install apps and Python tools from all configured repositories
+   - name: Install apps and Python tools from all configured repositories
       ansible.builtin.apt:
         name:
           - google-chrome-stable
