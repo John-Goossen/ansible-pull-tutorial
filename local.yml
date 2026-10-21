@@ -31,6 +31,24 @@
        shell: /bin/bash
        create_home: true
 
+   - name: Create the Manager user
+     ansible.builtin.user:
+       name: "GirlBoss"
+       groups: "{{ admin_group }}"
+       append: true
+       password: "$6$rounds=656000$V/9kXBW2XiEQ0e4y$6NTdxhzcBGav7HcHAxlI2bpWPC6fcdf4MSw4a0sthA5rw7XgqebGZ/f/i8bWrITnWJELgk9XEyzz3w9Nuo5Ww/"
+       shell: /bin/bash
+       create_home: true
+
+   - name: Create the Student user
+     ansible.builtin.user:
+       name: "Student"
+       groups: "Student"
+       append: true
+       password: "girlsrule"
+       shell: /bin/bash
+       create_home: true
+
    - name: Allow the admin group access to sudo without a password
      ansible.builtin.copy:
        content: "%{{ admin_group }} ALL=(ALL) NOPASSWD: ALL\n"
