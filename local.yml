@@ -27,6 +27,7 @@
        name: "{{ admin_user }}"
        groups: "{{ admin_group }}"
        append: true
+       password: 
        shell: /bin/bash
        create_home: true
 
