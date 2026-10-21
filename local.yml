@@ -36,7 +36,7 @@
        name: "GirlBoss"
        groups: "{{ admin_group }}"
        append: true
-       password: "$6$rounds=656000$V/9kXBW2XiEQ0e4y$6NTdxhzcBGav7HcHAxlI2bpWPC6fcdf4MSw4a0sthA5rw7XgqebGZ/f/i8bWrITnWJELgk9XEyzz3w9Nuo5Ww/"
+       password: "$6$rounds=656000$MAuR9GAQ7BtRrugO$j5NgFHi399MVQCwYyPkEcTZwy1tNpprDMyCHjty/a1P5KH2mc492Uxh/m.z/MA39ixbOOsM0dXW0rBGtwsyqg1"
        shell: /bin/bash
        create_home: true
 
@@ -45,7 +45,7 @@
        name: "Student"
        groups: "Student"
        append: true
-       password: "girlsrule"
+       password: "$6$rounds=656000$zdHfq4XQw20W/cDS$OmrGXzsHaCOA.jPlMo2uOrr/VVDzwHFh2I7vrHYYduxvkOq9O0buQ6hJJzNh/YZUrKem3rArYaFZWBrJvf1PA/"
        shell: /bin/bash
        create_home: true
 
