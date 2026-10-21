@@ -84,3 +84,64 @@
        minute: "*/30"
        job: "/usr/bin/ansible-pull -o -U {{ ansible_pull_repo }} >> /var/log/ansible-pull.log"
        cron_file: ansible-pull
+
+    # --- COMMON SETUP ---
+
+    - name: Ensure dependencies for repository management are present
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - curl
+          - gnupg
+        state: present
+        update_cache: yes
+
+    - name: Create directory for custom repository keys
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+
+    # --- GOOGLE CHROME INSTALLATION ---
+
+    - name: Download Google's official GPG signing key
+      ansible.builtin.get_url:
+        url: https://google.com
+        dest: /etc/apt/keyrings/google-chrome.asc
+        mode: '0644'
+
+    - name: Add Google Chrome repository source configuration
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.asc] http://google.com stable main"
+        filename: google-chrome
+        state: present
+
+
+    # --- VISUAL STUDIO CODE INSTALLATION ---
+
+    - name: Download Microsoft's official GPG signing key
+      ansible.builtin.get_url:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        dest: /etc/apt/keyrings/microsoft.asc
+        mode: '0644'
+
+    - name: Add Visual Studio Code repository source configuration
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.asc] https://packages.microsoft.com/repos/vscode stable main"
+        filename: vscode
+        state: present
+
+
+    # --- FINAL PACKAGE DEPLOYMENT ---
+
+    - name: Install apps and Python tools from all configured repositories
+      ansible.builtin.apt:
+        name:
+          - google-chrome-stable
+          - code
+          - python3
+          - python3-pip
+          - python3-venv
+        state: present
+        update_cache: yes
